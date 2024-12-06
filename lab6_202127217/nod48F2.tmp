@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://cyffvjsr6fggg"]
+[gd_scene load_steps=9 format=4 uid="uid://cyffvjsr6fggg"]
 
 [ext_resource type="Texture2D" uid="uid://dhtcawisia43c" path="res://Tile_Asset/Tileset.png" id="1_mxhrx"]
 [ext_resource type="Texture2D" uid="uid://cft2t5e8r20xs" path="res://Tile_Asset/Tileset2.png" id="1_wdbqd"]
 [ext_resource type="Texture2D" uid="uid://dxt808o303vxm" path="res://Player/ship_0001.png" id="3_kmwq6"]
 [ext_resource type="Script" path="res://rigid_body_2d.gd" id="3_n18pl"]
-[ext_resource type="Script" path="res://score.gd" id="5_ohrjq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwfsb"]
 texture = ExtResource("1_wdbqd")
@@ -360,7 +359,6 @@ texture = ExtResource("1_mxhrx")
 
 [sub_resource type="TileSet" id="TileSet_de5m1"]
 physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_xtjmx")
 sources/0 = SubResource("TileSetAtlasSource_wwfsb")
 
@@ -374,7 +372,7 @@ tile_map_data = PackedByteArray("AAADACcAAgAIAAEAAAADACgAAgAIAAEAAAADACYAAgAIAAE
 tile_set = SubResource("TileSet_de5m1")
 
 [node name="Player" type="RigidBody2D" parent="."]
-position = Vector2(107, 337)
+position = Vector2(89, 536)
 collision_mask = 30
 script = ExtResource("3_n18pl")
 metadata/_edit_group_ = true
@@ -390,18 +388,7 @@ shape = SubResource("RectangleShape2D_f43ob")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -500
-limit_top = -3420
+limit_top = -3450
 limit_right = 4000
 limit_bottom = 650
 editor_draw_limits = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Score" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("5_ohrjq")
-
-[node name="Rest_Point" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
