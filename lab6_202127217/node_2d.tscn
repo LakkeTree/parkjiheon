@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cyffvjsr6fggg"]
+[gd_scene load_steps=45 format=4 uid="uid://cyffvjsr6fggg"]
 
 [ext_resource type="Texture2D" uid="uid://dhtcawisia43c" path="res://Tile_Asset/Tileset.png" id="1_mxhrx"]
 [ext_resource type="Texture2D" uid="uid://cft2t5e8r20xs" path="res://Tile_Asset/Tileset2.png" id="1_wdbqd"]
@@ -8,13 +8,19 @@
 [ext_resource type="FontFile" uid="uid://4y0asl1rxhbp" path="res://fonts/SF함박눈TTF.ttf" id="5_67vxk"]
 [ext_resource type="Script" path="res://score.gd" id="5_ohrjq"]
 [ext_resource type="Script" path="res://rest_point.gd" id="7_0dwv5"]
+[ext_resource type="Texture2D" uid="uid://cq0l6jb84duls" path="res://Animation/Explosion_6.png" id="7_0u7ke"]
+[ext_resource type="Texture2D" uid="uid://caamh704rtsdn" path="res://Animation/Explosion_7.png" id="7_qh1qi"]
 [ext_resource type="Texture2D" uid="uid://dpa1twns3418d" path="res://items/gold_1.png" id="8_6ebhe"]
+[ext_resource type="Texture2D" uid="uid://dui7xmyd2ml18" path="res://Animation/Explosion_8.png" id="8_pii2k"]
 [ext_resource type="Script" path="res://coin.gd" id="8_qdw24"]
+[ext_resource type="Texture2D" uid="uid://cb2bd1xpdvn4f" path="res://Animation/Explosion_9.png" id="9_a3klx"]
 [ext_resource type="Texture2D" uid="uid://blty75qlr0f3h" path="res://items/gold_2.png" id="9_cpk77"]
 [ext_resource type="Texture2D" uid="uid://u8n87ns6nwd6" path="res://items/Boss_HP_Bar_2.png" id="9_iod32"]
 [ext_resource type="Texture2D" uid="uid://bfwfhv4s1htdd" path="res://items/gold_3.png" id="10_kg75q"]
+[ext_resource type="Texture2D" uid="uid://c0jr3sxnviy8h" path="res://Animation/Explosion_10.png" id="10_upgy7"]
 [ext_resource type="Script" path="res://texture_progress_bar.gd" id="11_o5cy5"]
 [ext_resource type="Texture2D" uid="uid://bxx3v561xj4nn" path="res://items/gold_4.png" id="11_v2ww5"]
+[ext_resource type="AudioStream" uid="uid://dj76yvbge353y" path="res://Sound/crash.mp3" id="12_qiigg"]
 [ext_resource type="AudioStream" uid="uid://c4hfov2f2aoo1" path="res://Sound/coin-recieved-230517.mp3" id="13_pig34"]
 [ext_resource type="Script" path="res://trap.gd" id="17_5yhfh"]
 [ext_resource type="Texture2D" uid="uid://dy2ht332ftbmo" path="res://Obstacles/trap.png" id="18_vkbfv"]
@@ -404,6 +410,32 @@ sources/1 = SubResource("TileSetAtlasSource_3w0ft")
 [sub_resource type="CircleShape2D" id="CircleShape2D_7veqd"]
 radius = 27.0416
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8jqul"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0u7ke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qh1qi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pii2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a3klx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_upgy7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0u7ke")
+}],
+"loop": false,
+"name": &"collision",
+"speed": 5.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4nuyd"]
 animations = [{
 "frames": [{
@@ -472,8 +504,9 @@ tile_map_data = PackedByteArray("AAADACcAAgAIAAEAAAADACgAAgAIAAEAAAADACYAAgAIAAE
 tile_set = SubResource("TileSet_de5m1")
 
 [node name="Player" type="RigidBody2D" parent="."]
-position = Vector2(951, -315)
+position = Vector2(1037, -312)
 collision_mask = 30
+lock_rotation = true
 script = ExtResource("3_n18pl")
 metadata/_edit_group_ = true
 
@@ -495,6 +528,17 @@ editor_draw_limits = true
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("13_pig34")
+bus = &"Coin"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(18, 18)
+scale = Vector2(0.126563, 0.14375)
+sprite_frames = SubResource("SpriteFrames_8jqul")
+animation = &"collision"
+
+[node name="Crash" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("12_qiigg")
+bus = &"Crash"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

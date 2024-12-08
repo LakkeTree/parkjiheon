@@ -2,12 +2,14 @@ extends RigidBody2D
 
 const SPEED = 300
 var temp = 0
+var tempy = 100
 
 var last_direction = Vector2.ZERO  
 @onready var asp = $CoinSound
+@onready var crash = $Crash
 
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	var input_direction = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -25,6 +27,10 @@ func _process(delta: float) -> void:
 		asp.play()
 		temp = Global.score
 		
+	if Global.Health != tempy:
+		crash.play()
+		$AnimatedSprite2D.play("collision")
+		tempy = Global.Health
 	
 		
 	
