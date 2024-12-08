@@ -1,8 +1,11 @@
 extends RigidBody2D
 
-const SPEED = 300;
+const SPEED = 300
+var temp = 0
 
 var last_direction = Vector2.ZERO  
+@onready var asp = $CoinSound
+
 
 func _process(delta: float) -> void:	
 	var input_direction = Vector2(
@@ -17,3 +20,12 @@ func _process(delta: float) -> void:
 		return
 	
 	linear_velocity = last_direction * SPEED
+	
+	if Global.score != temp:
+		asp.play()
+		temp = Global.score
+		
+	
+		
+	
+	
