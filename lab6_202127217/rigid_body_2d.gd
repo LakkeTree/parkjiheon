@@ -4,10 +4,13 @@ const SPEED = 300
 var temp = 0
 var tempy = 100
 
-var last_direction = Vector2.ZERO  
+var last_direction = Vector2.ZERO
 @onready var asp = $CoinSound
 @onready var crash = $Crash
+@onready var bgm = $bgm
 
+func _ready() -> void:
+	bgm.play()
 
 func _process(delta: float) -> void:
 	var input_direction = Vector2(
@@ -30,8 +33,7 @@ func _process(delta: float) -> void:
 	if Global.Health != tempy:
 		crash.play()
 		$AnimatedSprite2D.play("collision")
-		tempy = Global.Health
-	
-		
+		tempy = Global.Health	
+
 	
 	
