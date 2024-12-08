@@ -401,8 +401,8 @@ sources/2 = SubResource("TileSetAtlasSource_xtjmx")
 sources/0 = SubResource("TileSetAtlasSource_wwfsb")
 sources/1 = SubResource("TileSetAtlasSource_3w0ft")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f43ob"]
-size = Vector2(58, 41)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7veqd"]
+radius = 27.0416
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4nuyd"]
 animations = [{
@@ -483,8 +483,8 @@ scale = Vector2(2.1875, 2.1875)
 texture = ExtResource("3_kmwq6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(20, 19.5)
-shape = SubResource("RectangleShape2D_f43ob")
+position = Vector2(19, 20)
+shape = SubResource("CircleShape2D_7veqd")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -500
